@@ -8,14 +8,18 @@
 require 'faker'
 
 5.times do
-    dogsitter = Dogsitter.create!(name:Faker::Name.name)       
+    city = City.create!(city_name:Faker::Address.city)
+end
+
+5.times do
+    dogsitter = Dogsitter.create!(name:Faker::Name.name, city: City.all.sample)       
 end 
 
 50.times do 
-    dog = Dog.create!(name:Faker::Name.name) 
+    dog = Dog.create!(name:Faker::Name.name, city: City.all.sample) 
 end 
 
 
 3.times do 
-    stroll = Stroll.create!(dogsitter:Dogsitter.all.sample, dog:Dog.all.sample)
+    stroll = Stroll.create!(dogsitter:Dogsitter.all.sample, dog:Dog.all.sample,city:City.all.sample)
 end
